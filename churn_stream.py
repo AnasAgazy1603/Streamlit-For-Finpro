@@ -140,7 +140,7 @@ with st.form("predict_form"):
         )
         WarehouseToHome_Bin = st.selectbox(
             "Distance from Warehouse to Home",
-            ['Very Close (<10)', 'Close (10–14)', 'Far (15–20)', 'Very Far (>20)'],
+            ['Very Close (<9)', 'Close (10–14)', 'Far (15–20)', 'Very Far (>20)'],
             help="Distance from warehouse to the customer's home."
         )
         Cashback_Cat = st.selectbox(
