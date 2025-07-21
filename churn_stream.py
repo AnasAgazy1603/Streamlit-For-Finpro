@@ -34,7 +34,7 @@ def load_and_predict_training_data():
 df_train_with_preds = load_and_predict_training_data()
 
 # Title
-st.image("bradless.png", width=500)  # Sesuaikan nama file dan ukuran
+st.image("bradlees-white.png", width=500)  # Sesuaikan nama file dan ukuran
 st.title("Customer Churn Prediction App")
 
 # --- Optional Dashboard Summary ---
