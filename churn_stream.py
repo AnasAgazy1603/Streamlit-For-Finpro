@@ -35,11 +35,11 @@ df_train_with_preds = load_and_predict_training_data()
 
 # Title
 st.image("bradless.png", width=500)  # Sesuaikan nama file dan ukuran
-st.title("📉 Customer Churn Prediction App")
+st.title("Customer Churn Prediction App")
 
 # --- Optional Dashboard Summary ---
 st.markdown("---")
-st.header("📊 Customer Churn Summary Dashboard")
+st.header("Customer Summary Dashboard")
 
 # Load history data if available
 if os.path.exists("history.csv"):
@@ -61,6 +61,17 @@ if os.path.exists("history.csv"):
     st.subheader("📉 Churn Distribution")
     churn_counts = df_history["Prediction"].value_counts()
     fig1, ax1 = plt.subplots()
+    buf1 = io.BytesIO()
+    fig1.savefig(buf1, format="png")
+    buf1.seek(0)
+
+    st.download_button(
+        label="⬇️ Download Churn Distribution Chart",
+        data=buf1,
+        file_name="churn_distribution.png",
+        mime="image/png"
+        )
+    
     ax1.pie(
         churn_counts,
         labels=churn_counts.index,
@@ -73,7 +84,7 @@ if os.path.exists("history.csv"):
 
     # Line chart: Tenure distribution (optional)
     if "Tenure" in df_history.columns:
-        st.subheader("📈 Customer Tenure Distribution")
+        st.subheader("Customer Tenure Distribution")
         tenure_counts = df_history["Tenure"].value_counts().sort_index()
         fig2, ax2 = plt.subplots()
         ax2.plot(tenure_counts.index, tenure_counts.values, marker="o")
@@ -91,7 +102,7 @@ st.markdown("Fill in customer data to predict the likelihood of churn. "
 
 # Input form
 with st.form("predict_form"):
-    st.subheader("🧾 Enter Customer Data")
+    st.subheader("Enter Customer Data")
 
     col1, col2 = st.columns(2)
 
@@ -207,3 +218,17 @@ if os.path.exists("history.csv"):
     st.dataframe(pd.read_csv("history.csv"))
 else:
     st.info("No prediction history yet.")
+
+if os.path.exists("history.csv"):
+    st.dataframe(pd.read_csv("history.csv"))
+
+    with open("history.csv", "rb") as f:
+        st.download_button(
+            label="⬇️ Download Prediction History (CSV)",
+            data=f,
+            file_name="prediction_history.csv",
+            mime="text/csv"
+        )
+else:
+    st.info("No prediction history yet.")
+
