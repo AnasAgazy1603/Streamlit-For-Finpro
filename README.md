@@ -33,14 +33,12 @@ This is a Streamlit-based web application to predict **customer churn** using a 
 
 ```bash
 Streamlit-For-Finpro/
-├── apps baru/
-│   └── churn_stream.py         # Main Streamlit app file
+├── churn_stream.py                         # Main Streamlit app file
 ├── Final_Model_Churn_Analysis_Project.pkl  # Pretrained LightGBM model
-├── X_train_cleaned.csv         # Cleaned training data
-├── history.csv                 # Auto-created prediction history
-├── requirements.txt            # Python dependencies
-└── README.md                   # Project documentation
-```
+├── X_train_cleaned.csv                     # Cleaned training data
+├── history.csv                             # Auto-created prediction history
+├── requirements.txt                        # Python dependencies
+└── README.md                               # Project documentation
 
 ---
 
