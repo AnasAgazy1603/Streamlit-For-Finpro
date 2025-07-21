@@ -39,6 +39,7 @@ Streamlit-For-Finpro/
 ├── history.csv                             # Auto-created prediction history
 ├── requirements.txt                        # Python dependencies
 └── README.md                               # Project documentation
+```
 
 ---
 
