@@ -46,8 +46,6 @@ Streamlit-For-Finpro/
 ## Running the App Locally
 
 ```bash
-Copy
-Edit
 git clone https://github.com/AnasAgazy1603/Streamlit-For-Finpro.git
 cd Streamlit-For-Finpro
 pip install -r requirements.txt
