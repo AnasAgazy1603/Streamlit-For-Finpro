@@ -109,21 +109,72 @@ st.markdown("Fill in customer data to predict the likelihood of churn.")
 with st.form("predict_form"):
     st.subheader("Enter Customer Data")
     col1, col2 = st.columns(2)
+
     with col1:
-        NumberOfDeviceRegistered = st.number_input("Number of Devices Registered", min_value=0)
-        DaySinceLastOrder = st.number_input("Day Since Last Order", min_value=0)
-        OrderCount = st.number_input("Total Order Count in Months", min_value=0)
-        OrderAmountHikeFromlastYear = st.number_input("Order Amount Hike from Last Year (%)", min_value=0.0)
-        Tenure = st.number_input("Customer Tenure (months)", min_value=0)
-        NumberOfAddress = st.number_input("Number of Saved Addresses", min_value=0)
+        NumberOfDeviceRegistered = st.number_input(
+            "Number of Devices Registered",
+            min_value=0,
+            help="How many devices are registered to the customer's account."
+        )
+        DaySinceLastOrder = st.number_input(
+            "Day Since Last Order",
+            min_value=0,
+            help="Number of days since the last order was placed."
+        )
+        OrderCount = st.number_input(
+            "Total Order Count in Months",
+            min_value=0,
+            help="Total number of orders placed in the last months."
+        )
+        OrderAmountHikeFromlastYear = st.number_input(
+            "Order Amount Hike from Last Year (%)",
+            min_value=0.0,
+            help="Percentage increase in total order value from the previous year."
+        )
+        Tenure = st.number_input(
+            "Customer Tenure (months)",
+            min_value=0,
+            help="How long (in months) the customer has been with the company."
+        )
+        NumberOfAddress = st.number_input(
+            "Number of Saved Addresses",
+            min_value=0,
+            help="Total shipping addresses saved in the customer's account."
+        )
+
     with col2:
-        CityTier = st.selectbox("City Tier", [1, 2, 3])
-        SatisfactionScore = st.selectbox("Satisfaction Score", [1, 2, 3, 4, 5])
-        WarehouseToHome_Bin = st.selectbox("Distance from Warehouse to Home", ['Very Close (≤9)', 'Close (10–14)', 'Far (15–20)', 'Very Far (>20)'])
-        Cashback_Cat = st.selectbox("Cashback Level", ['Low', 'Medium', 'High'])
-        Complain = st.selectbox("Has Complained Before?", [0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
-        PreferredPaymentMode = st.selectbox("Preferred Payment Method", ['Credit Card', 'Debit Card', 'UPI', 'Cash on Delivery', 'E wallet'])
-    
+        CityTier = st.selectbox(
+            "City Tier",
+            [1, 2, 3],
+            help="Tier of the city the customer lives in. Tier 1 = major city, Tier 3 = smaller town."
+        )
+        SatisfactionScore = st.selectbox(
+            "Satisfaction Score",
+            [1, 2, 3, 4, 5],
+            help="Customer satisfaction score (1 = very dissatisfied, 5 = very satisfied)."
+        )
+        WarehouseToHome_Bin = st.selectbox(
+            "Distance from Warehouse to Home",
+            ['Very Close (≤9)', 'Close (10–14)', 'Far (15–20)', 'Very Far (>20)'],
+            help="Distance from warehouse to the customer's home."
+        )
+        Cashback_Cat = st.selectbox(
+            "Cashback Level",
+            ['Low', 'Medium', 'High'],
+            help="Cashback category typically received by the customer."
+        )
+        Complain = st.selectbox(
+            "Has Complained Before?",
+            [0, 1],
+            format_func=lambda x: "Yes" if x == 1 else "No",
+            help="Whether the customer has ever submitted a complaint."
+        )
+        PreferredPaymentMode = st.selectbox(
+            "Preferred Payment Method",
+            ['Credit Card', 'Debit Card', 'UPI', 'Cash on Delivery', 'E wallet'],
+            help="Most frequently used payment method by the customer."
+        )
+
     submitted = st.form_submit_button("🚀 Predict Churn")
 
 if submitted:
@@ -159,9 +210,6 @@ if submitted:
         history_df = input_data
     history_df.to_csv("history.csv", index=False)
 
-# Display training predictions
-st.subheader("📊 Predictions from Training Data")
-st.dataframe(df_train_with_preds)
 
 # Show & download history
 st.subheader("📝 User Prediction History")
