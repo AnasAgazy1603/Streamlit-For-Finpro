@@ -161,7 +161,12 @@ with st.form("predict_form"):
         Cashback_Cat = st.selectbox(
             "Cashback Level",
             ['Low', 'Medium', 'High'],
-            help="Cashback category typically received by the customer."
+            help="Cashback category typically received by the customer:
+            '- Low (≤145.77)'
+            '- Medium (145.78–163.28)'
+            '- High (163.29–196.39)'
+            '- Very High (>196.39)'
+            """"
         )
         Complain = st.selectbox(
             "Has Complained Before?",
